@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamil Męndak - Wizytówka Programisty</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset i podstawowe style */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-blue: #2a5ee8;
+            --secondary-blue: #4a7dff;
+            --dark-blue: #1a3fa0;
+            --light-blue: #e6f0ff;
+            --gray: #f5f7fa;
+            --dark-gray: #6c757d;
+            --black: #212529;
+            --purple: #7b61ff;
+            --light-purple: #9d8aff;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--black);
+            background: linear-gradient(135deg, var(--gray) 0%, var(--light-blue) 100%);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+            color: var(--dark-blue);
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-blue), var(--purple));
+            border-radius: 2px;
+        }
+        
+        .card {
+            background-color: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: linear-gradient(to right, var(--primary-blue), var(--purple));
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(to right, var(--dark-blue), var(--light-purple));
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(42, 94, 232, 0.25);
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            padding: 100px 0 80px;
+            text-align: center;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header-content h1 {
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .header-content p {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 12px 20px;
+            border-radius: 50px;
+            transition: var(--transition);
+        }
+        
+        .contact-item:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+        }
+        
+        .contact-item i {
+            font-size: 1.2rem;
+        }
+        
+        .contact-item a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .header-content .btn {
+            margin-top: 20px;
+        }
+        
+        /* Sekcja O mnie */
+        .about-section {
+            background-color: var(--white);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark-blue);
+        }
+        
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--dark-gray);
+        }
+        
+        .about-image {
+            text-align: center;
+        }
+        
+        .profile-img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Sekcja Umiejętności */
+        .skills-section {
+            background-color: var(--gray);
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .skill-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .skill-card i {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-blue);
+        }
+        
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+        }
+        
+        .skill-card p {
+            color: var(--dark-gray);
+        }
+        
+        /* Formularz kontaktowy */
+        .contact-section {
+            background-color: var(--white);
+        }
+        
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            color: var(--dark-blue);
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e1e5eb;
+            border-radius: 12px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(42, 94, 232, 0.1);
+        }
+        
+        .form-group textarea {
+            min-height: 180px;
+            resize: vertical;
+        }
+        
+        .form-submit {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        /* Stopka */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1.3rem;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px);
+        }
+        
+        .social-link.github:hover {
+            background-color: #333;
+        }
+        
+        .social-link.linkedin:hover {
+            background-color: #0077b5;
+        }
+        
+        .social-link.twitter:hover {
+            background-color: #1DA1F2;
+        }
+        
+        .social-link.instagram:hover {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        }
+        
+        .social-link.facebook:hover {
+            background-color: #3b5998;
+        }
+        
+        .contact-details {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .contact-detail i {
+            color: var(--primary-blue);
+        }
+        
+        .contact-detail a {
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .contact-detail a:hover {
+            color: var(--light-blue);
+        }
+        
+        .copyright {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsywność */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+            
+            .header-content h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+            
+            .section-title {
+                font-size: 1.9rem;
+            }
+            
+            .header-content h1 {
+                font-size: 2.3rem;
+            }
+            
+            .header-content p {
+                font-size: 1.2rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .contact-item {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-links {
+                gap: 15px;
+            }
+            
+            .contact-details {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .card {
+                padding: 25px 20px;
+            }
+            
+            .header-content h1 {
+                font-size: 2rem;
+            }
+            
+            .header-content p {
+                font-size: 1.1rem;
+            }
+            
+            .contact-item {
+                padding: 10px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Kamil Męndak</h1>
+                <p>Programista z pasją | Twórca stron internetowych | Future Game Developer</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>790 341 332</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:kam.mendak@gmail.com">kam.mendak@gmail.com</a>
+                    </div>
+                </div>
+                
+                <a href="#contact" class="btn">Skontaktuj się ze mną</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sekcja O mnie -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">O mnie</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Wciąż młody i chętny do nauczenia się czegoś nowego student</h3>
+                    <p>Jestem studentem informatyki z ogromną pasją do tworzenia stron internetowych. Codziennie staram się poszerzać swoje umiejętności i zdobywać nowe doświadczenia w świecie programowania.</p>
+                    <p>Szczególne zamiłowanie mam do tworzenia nowoczesnych, responsywnych stron internetowych, które nie tylko wyglądają świetnie, ale również zapewniają doskonałe doświadczenie użytkownika.</p>
+                    <p>Moim marzeniem jest stworzenie własnej gry komputerowej, która połączy w sobie piękną grafikę, wciągającą fabułę i innowacyjne mechaniki rozgrywki. Wierzę, że moje umiejętności programistyczne pozwolą mi zrealizować to marzenie w niedalekiej przyszłości.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Kamil Męndak - programista" class="profile-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekcja Umiejętności -->
+    <section id="skills" class="skills-section">
+        <div class="container">
+            <h2 class="section-title">Umiejętności</h2>
+            <div class="skills-container">
+                <div class="skill-card card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Kreatywność i innowacyjność</h3>
+                    <p>Jestem kreatywny w poszukiwaniu pomysłów na coś nowego. Uwielbiam wymyślać innowacyjne rozwiązania dla złożonych problemów programistycznych i nie boję się eksperymentować z nowymi technologiami.</p>
+                </div>
+                
+                <div class="skill-card card">
+                    <i class="fas fa-code"></i>
+                    <h3>Pracoholik z pasją</h3>
+                    <p>Jestem niepoprawnym pracoholikiem, który kocha to, co robi. Programowanie to nie tylko moja praca, ale również pasja, której poświęcam każdą wolną chwilę.</p>
+                </div>
+                
+                <div class="skill-card card">
+                    <i class="fas fa-users"></i>
+                    <h3>Praca w zespole</h3>
+                    <p>Świetnie odnajduję się w grupie. Potrafię efektywnie współpracować z innymi programistami, designerami i specjalistami, aby osiągnąć wspólny cel.</p>
+                </div>
+                
+                <div class="skill-card card">
+                    <i class="fas fa-tasks"></i>
+                    <h3>Zarządzanie zespołem</h3>
+                    <p>Posiadam zdolności zarządzania średniej wielkości grupą. Potrafię koordynować pracę zespołu, wyznaczać priorytety i dbać o terminową realizację projektów.</p>
+                </div>
+                
+                <div class="skill-card card">
+                    <i class="fas fa-sun"></i>
+                    <h3>Pozytywna energia</h3>
+                    <p>Mam sporo taktu i pozytywnej energii, którą zarażam innych. Wierzę, że pozytywne nastawienie i dobra atmosfera w zespole są kluczowe dla sukcesu każdego projektu.</p>
+                </div>
+                
+                <div class="skill-card card">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Tworzenie gier</h3>
+                    <p>Marzę o stworzeniu własnej gry i już teraz rozwijam swoje umiejętności w tym kierunku. Poznaję silniki gier i techniki tworzenia interaktywnych doświadczeń.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formularz kontaktowy -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Skontaktuj się ze mną</h2>
+            <div class="contact-form card">
+                <form id="contactForm" method="POST" action="#">
+                    <div class="form-group">
+                        <label for="name">Imię</label>
+                        <input type="text" id="name" name="name" required placeholder="Wpisz swoje imię">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="Wpisz swój adres email">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Wiadomość</label>
+                        <textarea id="message" name="message" required placeholder="Napisz swoją wiadomość..."></textarea>
+                    </div>
+                    
+                    <div class="form-submit">
+                        <button type="submit" class="btn">Wyślij wiadomość</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stopka -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://github.com/Kamsenseii" target="_blank" class="social-link github" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/kamil-m%C4%99ndak-6152b1293/" target="_blank" class="social-link linkedin" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://x.com/KamilMendak" target="_blank" class="social-link twitter" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com/kamsenseii/" target="_blank" class="social-link instagram" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/kamil.mendak.104" target="_blank" class="social-link facebook" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+            </div>
+            
+            <div class="contact-details">
+                <div class="contact-detail">
+                    <i class="fas fa-phone"></i>
+                    <span>790 341 332</span>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:kam.mendak@gmail.com">kam.mendak@gmail.com</a>
+                </div>
+            </div>
+            
+            <p class="copyright">
+                &copy; 2026 Kamil Męndak. Wszelkie prawa zastrzeżone.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Obsługa formularza
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Pobranie wartości z formularza
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Tutaj w rzeczywistej aplikacji wysłalibyśmy dane na serwer
+            // W tym przykładzie tylko pokażemy alert
+            alert(`Dziękuję za wiadomość, ${name}! Odpowiem na nią jak najszybciej na adres: ${email}`);
+            
+            // Resetowanie formularza
+            document.getElementById('contactForm').reset();
+        });
+    </script>
+</body>
+</html>
